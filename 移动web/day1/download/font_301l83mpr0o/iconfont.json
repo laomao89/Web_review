@@ -1,0 +1,100 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "35119274",
+      "name": "c052身份证",
+      "font_class": "c052shenfenzheng",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "35119276",
+      "name": "c074处理",
+      "font_class": "c074chuli",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "35119277",
+      "name": "c024闹钟超时",
+      "font_class": "c024naozhongchaoshi",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "35119279",
+      "name": "c045流程图",
+      "font_class": "c045liuchengtu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "35119293",
+      "name": "c068咨询人数",
+      "font_class": "c068zixunrenshu",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "35119294",
+      "name": "c071排队失败",
+      "font_class": "c071paiduishibai",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "35119301",
+      "name": "c080批量分配",
+      "font_class": "c080piliangfenpei",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "35119312",
+      "name": "c095不开心",
+      "font_class": "c095bukaixin",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "35119318",
+      "name": "c113向右",
+      "font_class": "c113xiangyou",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "35119321",
+      "name": "c115收起",
+      "font_class": "c115shouqi",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "35119325",
+      "name": "c116展开",
+      "font_class": "c116zhankai",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "35119347",
+      "name": "c114向左",
+      "font_class": "c114xiangzuo",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "35119368",
+      "name": "c174信号断开",
+      "font_class": "c174xinhaoduankai",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    }
+  ]
+}
