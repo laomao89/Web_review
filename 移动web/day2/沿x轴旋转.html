@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>x轴旋转</title>
+    <style>
+        body{
+            perspective: 300px;
+        }
+        img{
+            display: block;
+            width: 300px;
+            margin: 200px auto;
+            transition: all 3s;
+            -webkit-transform-origin: left bottom;
+        }
+        img:active{
+            transform: rotateX(-360deg);
+        }
+    </style>
+</head>
+<body>
+    <img src="img/hero.jpeg" >
+</body>
+</html>

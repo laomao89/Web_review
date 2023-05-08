@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      .box{
+        width: 650px;
+        height: 650px;
+        /*background-color:pink;*/
+        background: url("images/rotate.png");
+        margin:100px auto;
+        transition:all 1s;
+
+        transform-origin: 100px 100px;
+      }
+      .box:active{
+        transform:rotate(360deg);
+      }
+
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

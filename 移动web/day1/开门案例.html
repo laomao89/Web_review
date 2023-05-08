@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .box{
+        overflow: hidden;
+        width: 1366px;
+        height: 600px;
+        background: url("images/bg.jpg");
+        margin: 50px auto;
+      }
+      .box::before,
+      .box::after{
+        content: '';
+        float: left;
+        width: 50%;
+        height: 100%;
+        background: url("images/fm.jpg");
+        transition: transform 3s;
+      }
+      .box::after{
+        background-position: right;
+      }
+      .box:hover:before{
+        transform:translateX(-100%);
+      }
+      .box:hover:after{
+        transform:translateX(100%);
+      }
+    </style>
+
+</head>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>
