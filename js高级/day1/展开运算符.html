@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.在构造数组时，将其他数组或字符串展开
+        // let arr1 = [3,4];
+        // let arr2 = [5,6];
+        // let str1 = "张三是我老公";
+        // let arr3 = [100,200,...arr1,...arr2,...str1];
+        // console.log(arr3);
+
+        //2.为函数传递参数能够将数组或字符串展开
+        // let arr1 = [2,3,5,6,2,1,3,4,3];
+        // function fn(...x){
+        //     console.log(...x);
+        // }
+        // fn(...arr1);
+        // console.log(Math.max(...arr1));
+
+        //3.构造字面量对象的时候能够展开其它对象
+        let obj1 = {uname:'杨幂',age:23};
+        let obj2 = {sex:'女',hoppy:'演员',age:30};
+        let objh = {id:001,...obj1,...obj2,住址:'北京'};
+        console.log(objh);
+    </script>
+</body>
+</html>

@@ -7,11 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <input type="button" value="按钮">
     <script>
-
-
-
+        let btn = document.querySelector('input');
+        btn.addEventListener('click',function(){
+            console.log('很高兴看到你');
+        })
     </script>
-    
 </body>
-</html> 
+</html>

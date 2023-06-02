@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Es6中的新语法.是新的声明函数的方式(为了简化函数的写法 )
+            //基本写法
+            // let fn = (a,b) => {
+            //     console.log(a-b);
+            // }
+
+            //ES6写法
+            // let fn = x =>
+            //      x + x;
+            
+            // console.log(fn(6));
+            // fn(12,32)
+
+            // setTimeout(() => console.log(12*2),1000);
+
+            //特别注意
+            let fn = () => ({uname:'杨幂',age:12}); //使用小括号()扩起对象让其不识别成函数的中括号{}
+            console.log(fn());
+        
+    </script>
+</body>
+</html>

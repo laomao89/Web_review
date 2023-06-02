@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="我已经阅读用户协议(5)" disabled>
+    <script>
+        let btn = document.querySelector('input');
+        let num = 5;
+        let timeid;
+        timeid =setInterval(function(){
+            num--;
+            btn.value = `我已阅读用户协议(${num})`;
+            if (num < 0){
+                btn.value = '同意';
+                btn.disabled = false;
+                clearInterval(timeid);
+            }
+ 
+
+
+    </script>
+</body>
+</html>

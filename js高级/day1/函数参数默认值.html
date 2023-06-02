@@ -8,10 +8,17 @@
 </head>
 <body>
     <script>
+        // function fn(a,b=10){
+        //     console.log(a,b);
+        // }
+        // fn(3,4);
+        // fn(6);
 
-
-
+        //尽量不要这样写
+        function fn(a = 10,b){
+            console.log(a+b);
+        }
+        fn(undefined,12)
     </script>
-    
 </body>
-</html> 
+</html>
