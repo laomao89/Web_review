@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // map-----------------------------------------
+        // let arr = [3,4,5,6,12];
+        // let res = arr.map(item => item * 2);
+        // console.log(res);
+
+        // some------------------------------------------
+        // let arr = [2,3,4,5,6];
+        // let res = arr.some(item=> item > 5); //要求只要数组中有元素，大于5即可得到true
+        // console.log(res);
+
+        //every------------------------------------------
+        // let arr = [2,3,4,5,6];
+        // let res = arr.every(item=> item > 5);   //要求数组中所有元素，大于5即可得到true
+        // console.log(res);    
+
+        //find-----------------------------------------------
+        // let arr = ['小明','小红','小军','小资','小孩'];
+        // let res = arr.find(item=>item >'小');
+        // console.log(res);
+
+        //findIndex------------------------------------------
+        // let arr = ['小明','小红','小军','小资','小孩','老人'];
+        // let res = arr.findIndex(item=>item >'老');
+        // console.log(res);
+
+        //reduce-------------------有初始值--------------------
+        // let arr = [3,6,7,8,5,3];
+        // let sum = arr.reduce((total,curr)=> total + curr, 200); //因为有初始值，所以起始的时候，total= 初始值自己设置
+        // console.log(sum);
+
+        //reduce-------------------没有初始值--------------------
+        let arr = [3,6,7,8,5,3];
+        let sum = arr.reduce((total,curr)=> total + curr ); //因为[没有]初始值，所以[起始]的时候，total=第一个元素，curr是第二个元素，以此类推
+        console.log(sum);       //第一次循环第一个加第二个，第二次循环第一个加第二个的和加接下来的第一个，以此类推
+    </script>
+</body>
+</html>

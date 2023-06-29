@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            uname:'羊腿',
+            'u-name':'杨幂',
+            age:23,
+            dog:{
+                home:'小黑';
+            },
+            qt:true,
+            dd:null,
+            ii:function(){},
+            xx:function(){},
+
+        }
+
+        //obj.属性
+        console.log(obj.uname);
+        //obj['属性']
+        console.log(obj['u-name']);
+        //obj[变量]
+        let a = 'age';
+        console.log(obj[a]);//相当于obj['age']，千万不能用obj.a
+    </script>
+</body>
+</html>

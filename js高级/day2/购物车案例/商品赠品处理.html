@@ -1,0 +1,34 @@
+<!DOC
+
+Share icon
+profile
+History
++TYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let gift = '皮球,足球,小竹篮';
+/**
+        //将字符串组成数组
+        let arr = gift.split(',');
+        // console.log(arr);
+        let res = arr.map(item => {
+            return `<span class = "tag">[赠品]${item}</span>`;
+        })
+        // console.log(res);
+        console.log(res.join(''));
+**/
+
+        //以上只是过度完全可以用一行代码概括
+        res = gift.split(',').map(item=> `<span class = "tag">[赠品]${item}</span>`).join('');
+        console.log(res);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = 'pink,张三,张思';
+        //split--------------------------根据制定的字符，将字符串分割为数组--------------------------
+        let str_arr = str.split(',');
+        console.log(str_arr);
+
+        //substring----------------------字符串参数------------------------------------------------
+        let res = str.substring(2); //表示从【指定】下标的位置开始截取，一直截取到结尾
+        console.log(res);
+
+        let res2 = str.substring(2,5)    //标识从下标【指定】下标的位置开始截取，截取到【指定】下标位置结束
+        console.log(res2);
+    </script>
+</body>
+</html>
