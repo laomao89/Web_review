@@ -155,8 +155,6 @@
                     <p class="name">${item.name}</p>
                     <p class="price">${item.price}</p>
                 </div>
-
-
                 `;
             })
             // console.log(str);
@@ -164,8 +162,33 @@
         }
 
         //调用函数渲染全部商品
-        render(goodsList);
-    
+        render(goodsList); 
+        
+
+        //筛选----------------------------------------------------------------------
+        //共找到四个按钮，注册单击事件
+        document.querySelector('.filter').addEventListener('click',function(e){
+            //单击事件，函数内部进行筛选
+            //获取每个a标签的date-index属性（通过这个属性，判断点击的哪个a）
+            if(e.target.tagName === 'A'){
+                let index = e.target.dataset.index;
+                // console.log(index);
+                //使用filter对原始数据goodsList进行筛选，得到筛选后的新数据
+                let arr = [];
+                if (index == 1){
+                    arr = goodsList.filter(item =>item.price <= 100);
+                }else if (index == 2){
+                    arr = goodsList.filter(item =>item.price > 100 && item.price <= 300);
+                }else if (index == 3){
+                    arr = goodsList.filter(item =>item.price > 300);
+                }else{
+                    arr = goodsList;
+                }
+                //调用render函数，将筛选的数据渲染到页面
+                render(arr);
+            }
+        })
+        
     
 //总结:思路是循环遍历拼接
       </script>
