@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax_POST请求</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST','http://ajax-api.itheima.net/api/data');
+
+        xhr.send('username=老毛&password=yanong8913');
+        xhr.addEventListener('load',() => {
+            let res = JSON.parse(xhr.response);
+            console.log(res);
+        })
+    </script>
+</body>
+</html>

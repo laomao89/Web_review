@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>经典面试题</title>
+</head>
+<body>
+    <script>
+        // console.log(1);         //1:1
+        // setTimeout(function(){
+        //     console.log(2);     //6:2
+        // },0)
+        // const p = new Promise((resolve,reject) => {
+        //     console.log(3);     //2:3
+        //     resolve(1000)       //5:1000
+        //     console.log(4);     //3:4
+        // })
+        // p.then(data => {
+        //     console.log(data);
+        // })
+        // console.log(5);          //4:5
+    </script>
+    <script>
+        // new Promise((resolve,reject) => {
+        //     resolve(1)
+        //     new Promise((resolve,reject) => {
+        //         resolve(2);
+        //         console.log('杨幂是我偶像');
+        //     }).then(data => {
+        //         console.log(data);
+        //     })
+        // }).then(data => {
+        //     console.log(data);
+        // })
+        // console.log(3);
+    </script>
+    <script>
+        // setTimeout(() => {
+        //     console.log(1);             //6:1
+        // },0)
+        // new Promise((resolve,reject) => {
+        //     console.log(2);             //1:2
+        //     resolve('p1')               //5:p1
+
+        //     new Promise((resolve,reject) => {
+        //         console.log(3);         //2:3
+        //         setTimeout(() => {
+        //             resolve('setTimeout2');
+        //             console.log(4);     //7:4
+        //         },0)
+        //         resolve('p2')           //4:p2
+        //     }).then(data => {
+        //         console.log(data);
+        //     })
+        //     setTimeout(() => {
+        //         resolve('setTimenout1')
+        //         console.log(5);         //8:5
+        //     },0)
+        // }).then(data => {
+        //     console.log(data);
+        // })
+        // console.log(6);                 //3:6
+
+    </script>
+</body>
+</html>

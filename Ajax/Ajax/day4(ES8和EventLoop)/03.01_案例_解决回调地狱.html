@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.01_案例_解决回调地狱</title>
+</head>
+<body>
+    <script>
+        function myAjax(url){
+            return new Promise((resolve,reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET',url);
+                xhr.send();
+                xhr.addEventListener('load',() => {
+                    resolve(JSON.parse(xhr.response))
+                })
+            });
+        }
+        let pname = '';
+        let p = myAjax('http://ajax-api.itheima.net/api/province');
+        p.then(res => {
+            // console.log(res);
+            pname = res.data[11];
+            return myAjax(`http://ajax-api.itheima.net/api/city?pname=${pname}`);
+        }).then(res => {
+            let nname = res.data[0];
+
+            return myAjax(`http://ajax-aepi.itheima.net/api/area?pname=${pname}&cname=${nname}`)
+        }).then(res => {
+            console.log(res);
+        })
+    </script>
+    <script>
+        // 目标:用ES8的async+await来解决回调地狱问题
+        function myAjax(url){
+            return new Promise((resolve,reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET',url);
+                xhr.send();
+                xhr.addEventListener('load',() => {
+                    resolve(JSON.parse(xhr.response))
+                })
+            });
+        }
+        const getListFn = async () => {
+            const res1 = await myAjax('http://ajax-api.itheima.net/api/province');
+            const pname =res1.data[11];
+            const res2 = await myAjax(`http://ajax-api.itheima.net/api/city?pname=${pname}`);
+            const cname = res2.data[0];
+            const res3 = await myAjax(`http://ajax-aepi.itheima.net/api/area?pname=${pname}&cname=${cname}`);
+            console.log(res3);
+        }
+        getListFn();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>概念_请求体的3种类型</title>
+</head>
+<body>
+    <form>
+        <div>
+            <span>用户名:</span>
+            <input type="text" name="username"> 
+        </div>
+        <div>
+            <span>登录密码:</span>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <button>提交</button>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script src="../js/form-serialize/form-serialize.js"></script>
+    <script>
+        document.querySelector('button').addEventListener('click',e=>{
+            e.preventDefault();
+            //以前是自己一个个获取，现在整体获取
+            let formEl = document.querySelector('form');
+            //1字符串
+            // let str = serialize(formEl);
+            // serialize(formEl);
+
+            //2JSON字符串
+            // let obj = serialize(formEl,{hash:true})
+
+            //3FormData表单容器
+            let fd =new FormData(formEl);
+            console.log(fd);
+            //直接打印fd看不到要用遍历
+            fd.forEach((value,key) => {
+                console.log(value,key);
+            })
+
+
+
+            axios({
+                url:'http:ajax-api.itheima.net/api/data',
+                method:'POST',
+                // data:str
+                // data:obj
+                data:fd
+            }).then(res => {
+                console.log(res);
+            })
+        })
+    </script>
+</body>
+</html>

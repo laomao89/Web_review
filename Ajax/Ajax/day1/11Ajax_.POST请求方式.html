@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax_post请求方式</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+        axios({
+            url:'http://ajax-api.itheima.net/api/books',
+            method:'POST',
+            // params:参数值对应(query查询参数)
+            // data:请求体参数(body请求体)
+            data:{
+                bookname:['《葫芦娃》','《花花公子》'],
+                author:['磋商','范佩西'],
+                publisher:['人民文学出版社','西方文学出版社'],     
+            }
+        }).then(result =>{
+            console.log(result);
+        })
+    </script>
+</body>
+</html>

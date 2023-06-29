@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>了解url编码</title>
+</head>
+<body>
+    <script>
+        let str = '西游记';
+        let result = encodeURI(str);
+        console.log(result);
+        let newStr = decodeURI(result);
+        console.log(newStr);
+    </script>
+</body>
+</html>

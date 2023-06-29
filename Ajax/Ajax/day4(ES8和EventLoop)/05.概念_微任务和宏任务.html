@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05.概念_微任务和宏任务</title>
+</head>
+<body>
+    <script>
+        console.log(1);     //1
+        setTimeout(() => {
+            console.log(2); //4
+        },0)
+
+        let p = new Promise((resolve,reject) => {
+            resolve(3)     
+        })
+        p.then(res => {
+            console.log(res);       //3
+        })
+        console.log(4);     //2
+    </script>
+</body>
+</html>

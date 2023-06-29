@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.02_重构分类导航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: #333;
+        }
+        ul{
+            list-style: none;
+        }
+        .container{
+            width: 980px;
+            margin: 0 auto;
+        }
+        .top{
+            display: flex;
+            width: 100%;
+            height: 80px;
+            align-items: center;
+            justify-content: space-around;
+            position: relative;
+        }
+        .top>li{
+            text-align: center;
+        }
+        .top>li>a{
+            border-bottom: 1px solid transparent;
+        }
+        .top>li:hover>a{
+            border-color: #27ba9b;
+            color: #27ba9b;
+        }
+        .top>li:hover>.sub{
+            opacity: 1;
+            transform:scale(1,1);
+        }
+        .sub{
+            position: absolute;
+            left: 0;
+            top: 80px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            height: 100px;
+            opacity: 0;
+            transform: scale(1,0);
+            transform-origin: top center;
+            transition: all 0.3s .1s;
+        }
+        .sub li{
+            width: 120px;
+            text-align: center;
+        }
+        .sub li a {
+            display: block;
+            font-size: 14px;
+            padding-top: 8px;
+        }
+        .sub li a span{
+            display: block;
+        }
+        .sub li a img{
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="top">
+            <!-- <li>
+                <a herf="javascript:;">首页</a>
+                <ul class="sub">
+                    <li>
+                        <a href="javascript: ;">
+                            <span>砂锅厨具</span>
+                            <img src="https://yanxuan.nosdn.127.net/310b963e7a3c74b9d2ae90e4380da65.png?
+                            quality=95&imageView" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+            // 每个导航页面
+    //         <li>
+    //             <a herf="javascript:;">首页</a>
+                    // 每个二级导航页
+    //             <ul class="sub">
+    //                 <li>
+    //                     <a href="javascript: ;">
+    //                         <span>砂锅厨具</span>
+    //                         <img src="https://yanxuan.nosdn.127.net/310b963e7a3c74b9d2ae90e4380da65.png?
+    //                         quality=95&imageView" alt="">
+    //                     </a>
+    //                 </li>
+    //             </ul>
+    //         </li>
+    // 解题思路:外层li多个，每个li中sub下的li也会循环多个二级分类
+    </script>
+
+    <script>
+        async function myFn(){
+            axios.defaults.baseURL = 'http://ajax-api.itheima.net';
+            //1.先请求数据(把一级和二级都一起请求回来)
+            let{data:res} = await axios({
+                url:'/api/category/top',
+            })
+            //res.data:[一级分类对象，一级分类对象....]
+            //循环每个一级分类对象产生一个二级分类的请求Promise对象
+            let resultArr = res.data.map(obj => {
+                return axios({
+                    url:'/api/category/sub',
+                    params:{
+                        id:obj.id   //一级id
+                    }
+                })
+            })
+            //resultArr的值:[二级分类请求Promise小对象，二级分类请求Promise小对象]9个
+            //Promise.all(resultArr)==,合并成一个大的Promise对象
+            let result = await Promise.all(resultArr);
+            //result的值:[二级分类结果对象，二级分类结果对象....]
+            result.forEach(axiosResultObj => {
+                let obj = axiosResultObj.data.data    //二级分类结果对象
+                console.log(obj);
+                document.querySelector('.top').innerHTML +=`
+                <li>
+                    <a herf="javascript:;">${obj.name}</a>
+                    <ul class="sub">
+                        ${obj.children.map(item => {                           //里边的li是靠这个循环
+                            return `
+                            <li>
+                                <a href="javascript: ;">
+                                    <span>${item.name}</span>
+                                    <img src="${item.picture}" alt="">
+                                </a>
+                            </li>`
+                }).join('')}
+                    </ul>
+                </li>`
+            })
+        }
+        myFn();
+    </script>
+</body>
+</html>

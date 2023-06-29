@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.概念_async和await的注意事项</title>
+</head>
+<body>
+    <script>
+        //1
+        // async function Fn(){
+        //     let res = await 1;
+        //     console.log(res);
+        // }
+        // Fn();
+
+        //2
+        // console.log(0);     //0
+        // async function Fn(){
+        //     console.log(1); //2
+        //     const result = await 2;
+        //     console.log(result);    //4
+        //     console.log(3);         //5
+        // }
+        // console.log(4);     //1
+        // Fn();
+        // console.log(5);     //3
+
+        //3
+        // let p = new Promise((resolve,reject) => {
+        //     setTimeout(() => {
+        //         resolve('成功的值');
+        //     },2000)
+        // })
+
+        // const Fn = async() => {
+        //     let res1 = await p;
+        //     console.log(res1);
+        //     let res2 = await '杨幂';
+        //     console.log(res2);
+        // }
+        // Fn();
+
+        //4
+        let p = new Promise((resolve,reject) => {
+            setTimeout(() => {
+                reject('失败的值');
+            },2000)
+        })
+
+        const Fn = async() => {
+            try{
+                let res1 = await p;
+                console.log(res1);
+                let res2 = await '杨幂';
+                console.log(res2);
+            }catch(err){
+                console.error(err)
+            }
+            
+        }
+        Fn();
+    </script>
+</body>
+</html>

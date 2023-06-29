@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        //axios的params参数对应query参数
+        //遇到接口文档说query参数意思是：让你在url?后面拼接参数名和值
+        xhr.open('GET','http://ajax-api.itheima.net/api/city?pname=湖南省');
+        xhr.send();
+        xhr.addEventListener('load',() => {
+            let res = JSON.parse(xhr.response);
+            console.log(res);
+        })
+    </script>
+</body>
+</html>            

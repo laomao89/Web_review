@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.概念_EvenrLoop事件循环</title>
+</head>
+<body>
+    <script>
+        console.log(1);         //0:1
+        let userName = '老毛'
+        if(true){
+            console.log(2);     //1:2
+        }else{
+            console.log(3);
+        }
+        setTimeout(() => {
+            console.log(4);     //7:4
+        },1000)
+        function myFn(){
+            console.log(5);     //3:5
+        }
+        for (let i = 0;i <3; i++){
+            console.log(6);     //2:6 6 6
+        }
+        myFn();
+        setTimeout(() => {
+            console.log(7);     //6:7
+        },0)
+        let youFn = () =>{
+            console.log(8);     //4:8
+        }
+        document.addEventListener('click',() => {
+            console.log(9);     //8:9(需点击)
+        })
+        let obj = {
+            name:'老六'
+        }
+        youFn();
+        console.log(10);        //5:10 
+    </script>
+</body>
+</html>

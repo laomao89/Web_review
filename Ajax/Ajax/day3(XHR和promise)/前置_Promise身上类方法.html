@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前置_Promise身上类方法</title>
+</head>
+<body>
+    <script>
+
+        function axios(){
+            return new Promise((resolve,reject) => {
+                setTimeout(() => {
+                    resolve(1000);
+                },2000)
+            })
+        }
+        let arr = [];
+        for (let i = 0;i<15;i++){
+            let p = axios();
+            arr.push(p);
+        }
+        let bigP = Promise.all(arr);
+        bigP.then(res => {
+            console.log(res);
+        })
+    </script>
+</body>
+</html>

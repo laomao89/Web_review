@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单_文件上传</title>
+</head>
+<body>
+    <!-- accept 设置文件选择的类型 image/* 固定写法(只能选择图片文件) -->
+    <input type="file" id="myFile" accept="image/*">
+    <button>点击上传文件</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+        document.querySelector('click',e =>{
+            let fileList = document.querySelector("#myFile").files; //[File文件对象]
+
+            // 新知识：如果接口文档要求传递请求体(form-data内容类型)
+            // 使用：Windows提供的FormData构造函数，来实例化一个表单容器对象
+            // 语法:
+            /*
+                let fd = new FormData()
+                fd.append(参数名,前端要传的值)
+                //如果还有参数名和值继续调用append添加到fd中
+            */
+            let fd = new FormData();
+            fd.append('avatar',fileList[0]);
+            axios({
+                url:'http://ajax-api.itheima.net/api/file',
+                method:'POST',
+                data:fd,
+            }).then(res => {
+                console.log(res);
+            })
+        })
+    </script>
+</body>
+</html>

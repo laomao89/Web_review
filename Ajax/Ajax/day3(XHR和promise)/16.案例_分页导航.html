@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16.案例_分页导航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: #333;
+        }
+        ul{
+            list-style: none;
+        }
+        .container{
+            width: 980px;
+            margin: 0 auto;
+        }
+        .top{
+            display: flex;
+            width: 100%;
+            height: 80px;
+            align-items: center;
+            justify-content: space-around;
+            position: relative;
+        }
+        .top>li{
+            text-align: center;
+        }
+        .top>li>a{
+            border-bottom: 1px solid transparent;
+        }
+        .top>li:hover>a{
+            border-color: #27ba9b;
+            color: #27ba9b;
+        }
+        .top>li:hover>.sub{
+            opacity: 1;
+            transform:scale(1,1);
+        }
+        .sub{
+            position: absolute;
+            left: 0;
+            top: 80px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            height: 100px;
+            opacity: 0;
+            transform: scale(1,0);
+            transform-origin: top center;
+            transition: all 0.3s .1s;
+        }
+        .sub li{
+            width: 120px;
+            text-align: center;
+        }
+        .sub li a {
+            display: block;
+            font-size: 14px;
+            padding-top: 8px;
+        }
+        .sub li a span{
+            display: block;
+        }
+        .sub li a img{
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="top">
+            <!-- <li>
+                <a herf="javascript:;">首页</a>
+                <ul class="sub">
+                    <li>
+                        <a href="javascript: ;">
+                            <span>砂锅厨具</span>
+                            <img src="https://yanxuan.nosdn.127.net/310b963e7a3c74b9d2ae90e4380da65.png?
+                            quality=95&imageView" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+            // 每个导航页面
+    //         <li>
+    //             <a herf="javascript:;">首页</a>
+                    // 每个二级导航页
+    //             <ul class="sub">
+    //                 <li>
+    //                     <a href="javascript: ;">
+    //                         <span>砂锅厨具</span>
+    //                         <img src="https://yanxuan.nosdn.127.net/310b963e7a3c74b9d2ae90e4380da65.png?
+    //                         quality=95&imageView" alt="">
+    //                     </a>
+    //                 </li>
+    //             </ul>
+    //         </li>
+    // 解题思路:外层li多个，每个li中sub下的li也会循环多个二级分类
+    </script>
+
+    <script>
+        axios.defaults.baseURL = 'http://ajax-api.itheima.net';
+        /*
+        1.首先准备一套标签和样式(如上)
+        2.先获取一级分类数据列表promise对象
+        */
+       axios({
+        url:'/api/category/top',
+        //method:'GET'   //axios请求方式默认为'GET'所以可以省略
+       }).then(({data:res})=>{
+        //axios()在原地返回Promise对象(此Promise对象内包裹一个原生Ajax请求)
+        //axios它自己封装了一个结果对象并把后端返回的数据挂载到data属性下
+        // 所以:我想让res的值直接是后端返回的数据
+        // console.log(res);   //{data:[{一级分类对象},{一级分类对象}]}
+        let resultArr = res.data.map(obj => {
+           //3.遍历每个一级分类对象，再请求下属的二级分类列表
+           let p = axios({
+            url:'/api/category/sub',
+            params:{
+                id:obj.id   //一级id
+            }
+           })
+           //4.坑:直接把一级和二级的数据，在这里用标签承载铺设?   (可以)
+           //问题:JS的map循环很快，axios请求需要响应时间(谁先回来就在前面排列)
+           //每次铺设的顺序都不一样
+           //解决方案:
+                    // (1):每次循环产生一个小Promise对象(内部请求二级分类数据)
+                    // (2):我还想要它们都成功后一起返回一个最终结果
+                    // (3):还要保证它们的请求和响应顺序一一对应
+                    // Promise.all技术解决
+           return p;
+        })
+        // resultArr结果:[小Promise对象(负责请求一级分类下二级分类列表),小Promise对象]
+
+        //5.把9个小二级分类请求Promise对象，合并成一个大的Promise对象
+        Promise.all(resultArr).then(res =>{
+            console.log(res);
+            //6.有了最终的数据，循环产生一级和二级的标签结构并铺设到页面上
+            //res:[二级分类列表axios结果对象，二级分类列表axios结果对象] 9个
+            res.forEach(result => { //result:是二级分类列表axios的结果对象       //外边的li是靠这个循环
+                let obj = result.data.data //二级分类数据对象
+                document.querySelector('.top').innerHTML += `
+                <li>
+                    <a herf="javascript:;">${obj.name}</a>
+                    <ul class="sub">
+                        ${obj.children.map(item => {                           //里边的li是靠这个循环
+                            return `
+                            <li>
+                                <a href="javascript: ;">
+                                    <span>${item.name}</span>
+                                    <img src="${item.picture}" alt="">
+                                </a>
+                            </li>`
+                        }).join('')}
+                    </ul>
+                </li>`
+            })
+        })
+       })
+    </script>
+</body>
+</html>

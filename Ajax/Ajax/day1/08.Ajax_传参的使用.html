@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax传参的使用</title>
+</head>
+<body>
+    <!-- 目标:查询西游记相关信息
+         做法:axios传查询参数到服务器，换回响应结果
+     -->
+     <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+     <script>
+        axios({
+            url:'https://ajax-base-api-t.itheima.net/api/getbooks',
+            method:'GET',
+            /*
+            不传参，默认返回所有数据
+            传递查询参数，返回匹配数据
+            了解：params的参数在运行时会拼接在url?后面
+            */
+            params:{
+                bookname:'红楼梦',
+                author:'曹雪芹',
+            }
+        }).then(result =>{
+            console.log(result);
+        })
+        
+     </script>
+
+    
+</body>
+</html>

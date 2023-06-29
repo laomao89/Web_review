@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单_Ajax提交</title>
+</head>
+<body>
+    <form>
+        <div>
+            <span>用户名:</span>
+            <input type="text" name="username"> 
+        </div>
+        <div>
+            <span>登录密码:</span>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <button>提交</button>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+        // 1.提交按钮->绑定点击事件
+        document.querySelector('form').addEventListener('submit',(e) => {
+            // 2.阻止表单内button按钮默认提交行为
+            e.preventDefault();
+
+            //3.收集表单的值
+            let username = document.querySelector("input[name=username]").value;
+            let password = document.querySelector("input[name=password]").value;
+
+            //4.使用axios发送表单数据给接口
+            axios({
+                url:'http://ajax-api.itheima.net/api/data',
+                method:'POST',
+                data:{
+                    username:username,
+                    password:password, 
+                }
+            }).then(res=>{
+                console.log(res);
+            })
+        })
+    </script>
+    
+</body>
+</html>

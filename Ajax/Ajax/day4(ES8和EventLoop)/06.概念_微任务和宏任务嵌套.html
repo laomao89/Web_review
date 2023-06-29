@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06.概念_微任务和宏任务嵌套</title>
+</head>
+<body>
+    <script>
+        console.log(1);                         //1:1
+
+        //没给时间就是0秒（宏任务提交给浏览器->宏任务队列中等待yyytttrruuu）
+        setTimeout(function(){
+            console.log(2);                     //5:2
+            new Promise(function (resolve){
+                console.log(3);                 //6:3
+                resolve()
+            }).then(function(){
+                console.log(4);                 //7:4
+            })
+        })
+        new Promise(function (resolve){
+            console.log(5);                     //2:5
+            resolve();   //先标记Promise对象性成功
+        }).then(function(){     //.then()的时候会先把回调函数直接推入到微任务队列中
+            console.log(6);                     //4:6
+        })
+        setTimeout(function(){
+            console.log(7);   //发现0秒推入到宏任务中进行排队                  //8:7
+            new Promise(function (resolve){
+                console.log(8);                 //9:8
+                resolve();
+            }).then(function(){
+                console.log(9);                 //10:9
+            })
+        })
+        console.log(10);                        //3:10
+    </script>
+</body>
+</html>

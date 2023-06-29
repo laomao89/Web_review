@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.概念_async和await</title>
+</head>
+<body>
+
+    <script>
+        let p = new Promise((resolve,reject) => {
+            setTimeout(() => {
+                resolve('成功的值');
+            })
+        },2000)
+
+        //目标:掌握async和await语法使用
+        //作用:取代then函数，提取成功结果
+        //注意:await只能在被async修饰的函数内
+
+        //普通函数
+        async function Fn(){
+            const result = await p;
+            console.log(result);
+        }
+        Fn();
+
+        //箭头函数
+        const newFn = async() => {
+            const result = await p;
+            console.log(result);
+        }
+        newFn();
+    </script>
+</body>
+</html>
