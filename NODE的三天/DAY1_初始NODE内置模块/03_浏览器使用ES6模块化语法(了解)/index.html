@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 把目标js内所有代码复制到原地执行(如果有全局变量会污染全局环境-导致和别的/自己的js文件变量名冲突) -->
+  <!-- <script src="./01 export.is"></script> -->
+
+  <!-- 学了模块化语法(语法糖:会在运行时，帮你自动套用一个函数，并把导出的东西用特定的语法导出使用，不污染全局变量)-->
+  <!-- 所以在htm1里想要使用模块化，需要在script标签上添加type="module -->
+  <!-- 浏览器高版本支持 -->
+  <script type="module">
+    import obj from './01_export.js'
+    console.log(obj)
+  </script>
+</body>
+</html>
