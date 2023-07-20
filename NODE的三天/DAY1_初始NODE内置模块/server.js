@@ -7,7 +7,11 @@ const server = http.createServer()
 //别人对我请求来了，后面的事件处理函数执行
 server.on('request', (req, res) => {
   //req:请求对象(包含了请求方发来的信息)
+  console.log(req.url); //本次请求的端口号后面的路径
+  console.log(req.method);  //地址栏里发起的请求都是GET方式
+
   //res:响应对象(包含了属性和方法，用于做出响应
+  
   res.statusCode = 200 // 设置本次响应状态码
   res.setHeader('Content-Type', 'text/plain;charset=utf-8');// 设置本次响应体内容类
   // text/plain(普通文本)，并指定编码方式为utf-8正确让前端解析中文
