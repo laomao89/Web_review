@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跨域_前端</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+  <script>
+    axios({
+      url: 'http://localhost:3000/api/head'
+    }).then(res => { 
+      console.log(res);
+    })
+    //1浏览器同源策略
+    //作用:同源策略是浏览器的一种保护本地数据的机制(本网站的只能请求网站下的接口数据)
+    //判断:网页打开时地址栏里地址，和内嵌Ajax请求ur1地址之间。协议，域名，端口相同
+    //浏览器判断如果非同源，请求发送，服务器响应，但是浏览器无法接收(判断本次响应头没有开启CORS跨域资源共享机制，
+    //所以被拒绝了，于是丢弃响应的数据并在浏览器中报错)
+    // Access to XMLHttpRequest at
+    //违反同源策略，也叫做发生了跨域请求
+
+    //跨域:就是跨域名访问，根本原理是因为"浏览器"对"Ajax"有同源策略限制
+    //服务器与服务器之间不跨域
+    
+
+    //2:跨域的解决方案
+    //工作的时候，后端的接口肯定在另外一个服务器(主机名)下
+    // (1)方案1:前端+后端，支持jsonp方式请求 ->仅支持GET方式 (用的少，了解即可)
+    // (2)方案2:只需要后端开启CORS跨域资源共享(就是在响应头里设置一个字段)
+    // Access-Control-A1low-Origin: * 本服务器允许任何人来请求
+    // 前端正常请求，浏览发现这个接口允许跨域，所以不报错拿到数据给前端用
+    //(3)方案3:
+    //本地自己node+http搭建一个web服务，用服务器去请求另外一个服务器的接口把数据请求回来
+    // 转发给自己的前端使用
+    //前端要请求本地的这个服务器，而不能直接请求后端
+    //后端正常提供接口，但是不开启CORS
+  </script>
+</body>
+
+</html>

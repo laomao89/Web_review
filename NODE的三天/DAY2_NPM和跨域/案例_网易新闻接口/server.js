@@ -10,6 +10,8 @@ let apiObj = {
   '/api/ggdo': 'http://c.m.163.com/nc/article/list/T1444270454635/20-20.html',
 }
 server.on('request', (req, res) => {
+  //支持浏览器Ajax跨域访问，*代表任意来源都可以来请求
+  res.setHeader('Access-Control-Allow-Origin','*')
   if (req.url.startsWith('/api')) {
     if (apiObj[req.url]) {
       axios({
