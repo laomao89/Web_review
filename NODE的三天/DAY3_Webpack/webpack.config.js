@@ -4,6 +4,10 @@ module.exports = {
   mode:"development",
   //告诉webpack在打包时的入口
   entry: './src/main.js',//告诉webpack在打包时的入口
+  devServer: {
+    port: 2022, //端口号
+    open:true,  //启动后自动打开浏览器
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),//输出到哪个文件夹路径下(webpack要求path必须是一个绝对路径)
     filename: 'bundle.js',//输出的文件名
