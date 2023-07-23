@@ -27,6 +27,10 @@ module.exports = {
           //先让less-loader识别.less文件，并内置less把语法翻译成css
           //less文件转成css文件，所以后续还得需要css-loader和style-loader处理
         ],
+      },
+      { //webpack5版本，它把图片处理的加载器内置了，只需要设置加载器规则即可
+        test:/\.(png|jpg|gif|jpeg)$/i, //匹配图片文件
+        type:'asset'  //在导出一个data url 和一个单独的文件之间自动选择
       }
     ],
   },

@@ -2,3 +2,7 @@ ul,
 li {
   font-size: 24px;
 }
+/* 图作为body背景  */
+body {
+  background: url('../assets/images/backgrou.jpg') no-repeat center;
+}

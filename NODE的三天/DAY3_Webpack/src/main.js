@@ -18,8 +18,8 @@ import $ from "jquery";
 import axios from 'axios'
 const res1 = addFn(12, 12);
 const res2 = getArraySum([1, 2, 3, 4]);
-console.log(res1);
-console.log(res2);
+// console.log(res1);
+// console.log(res2);
 
 //使用jQuery渲染颜色(不用管)
 $(() => {
@@ -48,7 +48,14 @@ import css from './css/index.css'  //目的:是为了让css参与打包，webpac
 // 默认:webpack只能打包js代码
 
 //五:引入less文件
-import less from'./less/index.less'
+import './less/index.less'
+
+//六:创建图片，创建img展示
+import imgObj from './assets/images/1.gif'
+console.log(imgObj);
+let theImg = document.createElement('img')
+theImg.src = imgObj
+document.body.appendChild(theImg)
 
 
 
