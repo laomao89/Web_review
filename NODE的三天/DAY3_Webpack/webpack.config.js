@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
+  mode:"development",
   //告诉webpack在打包时的入口
   entry: './src/main.js',//告诉webpack在打包时的入口
   output: {
