@@ -31,6 +31,16 @@ module.exports = {
       { //webpack5版本，它把图片处理的加载器内置了，只需要设置加载器规则即可
         test:/\.(png|jpg|gif|jpeg)$/i, //匹配图片文件
         type:'asset'  //在导出一个data url 和一个单独的文件之间自动选择
+      },
+      {
+        test:/\.m?js$/, //匹配js结尾文件
+        exclude:/(node_modules|bower_components)/,  //不转换这两个文件夹里的js
+        use:{
+          loader:'babel-loader',  //使用加载器-处理
+          options:{
+            presets:['@babel/preset-env']   //预设:转码规则（用bable开发环境本来预设的）
+          }
+        }
       }
     ],
   },

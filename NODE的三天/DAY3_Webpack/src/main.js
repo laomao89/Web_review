@@ -58,4 +58,12 @@ theImg.src = imgObj
 document.body.appendChild(theImg)
 
 
+//七:
+
+//八:使用babel预编译(翻译)我们的js代码
+//预执行/降级/...
+const fn = () => {    //高级语法
+  console.log('你好babel');
+}
+console.log(fn);      //一定打印函数才会被webpac把“函数体”打包起来
 
