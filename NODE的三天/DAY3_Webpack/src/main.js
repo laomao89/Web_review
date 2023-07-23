@@ -67,3 +67,6 @@ const fn = () => {    //高级语法
 }
 console.log(fn);      //一定打印函数才会被webpac把“函数体”打包起来
 
+//包生成后产生独立的css文件
+import './css/index.css'
+
