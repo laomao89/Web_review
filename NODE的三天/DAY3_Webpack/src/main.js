@@ -44,8 +44,11 @@ $(() => {
 // 打包后，把打包后的代码放入到htm1中进行运行
 
 //四:引入css文件
-import './css/index.css'  //目的:是为了让css参与打包，webpack会把css代码打包进dist/bundle.js中
+import css from './css/index.css'  //目的:是为了让css参与打包，webpack会把css代码打包进dist/bundle.js中
 // 默认:webpack只能打包js代码
+
+//五:引入less文件
+import less from'./less/index.less'
 
 
 

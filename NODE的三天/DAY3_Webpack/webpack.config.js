@@ -20,6 +20,14 @@ module.exports = {
         //css-loader让你能够引入.css文件和代码打包进js中
         //style-loader会把js内样式代码，插入到html中dom中style标签内
       },
+      {
+        test:/\.less$/i,
+        use:[
+          "style-loader", "css-loader","less-loader"
+          //先让less-loader识别.less文件，并内置less把语法翻译成css
+          //less文件转成css文件，所以后续还得需要css-loader和style-loader处理
+        ],
+      }
     ],
   },
 };
