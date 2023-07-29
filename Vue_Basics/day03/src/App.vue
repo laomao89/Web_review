@@ -20,7 +20,7 @@
             <td>{{i+1}}</td>
             <td>{{item.subject}}</td>
             <td class="red">{{item.score}}</td>
-            <td>{{ time(item.date) }}</td>
+            <td>{{time(item.date)}}</td>
             <td>
               <a href="#" @click="del(item.id)">删除</a>
             </td>
@@ -98,18 +98,18 @@ export default {
     //     2、点击后：用户输入的信息拿得到！v-model="变量"  data里面得有变量！
     add(){
       // console.log(this.score,this.subject);
-      if (this.score==""||this.subject=="") {
-        alert("输入不能为空")
+      if(this.score==""||this.subject==""){
+        alert('输入不能为空');
         return;
       }
 
       //  3.数据拿到后：准备下，进入list数组内！
       //     进入之前，变成和list数组内其他成员一样模样！
       let one = {
-        id: Math.random(),   //  最后的id + 1
-        subject: this.subject, 
-        score: this.score, 
-        date: new Date()
+        id:Math.random(),
+        subject:this.subject,
+        score:this.score,
+        date:new Date()
       };
       this.list.push(one);
 
@@ -131,6 +131,7 @@ export default {
     //        模拟：前端拿到id，自己删除数组某个成员！
     //              splice(下标,1) :  找有id这个数据 ---->对应的下标
     del(id){
+      console.log(id);
       // 对应的下标：把数组遍历下，看哪个成员的id==点击这个id，那么该成员下标就是对应下标！
       // 把数组方法熟练 map find findIndex filter reduce every some sort splice
       // let i = this.list.findIndex(item=>item.id===id);
@@ -138,12 +139,8 @@ export default {
       // ==:先判断类型，在判断值  
       // ===：如果类型不同，直接false
       let i;
-      this.list.forEach((item,index)=>{
-        if (item.id==id) {
-          i = index;  // 找对应下标
-        }
-      });
-
+      let index = this.list.findIndex(item => item.id === id)
+      i = index;  // 找对应下标
 
       // 4、数组删除该成员
       this.list.splice(i,1);
