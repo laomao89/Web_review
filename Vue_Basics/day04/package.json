@@ -1,5 +1,5 @@
 {
-  "name": "day01",
+  "name": "day04",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "moment": "^2.29.4",
     "vue": "^2.6.14"
   },
   "devDependencies": {
