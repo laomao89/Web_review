@@ -15,6 +15,8 @@ export default {
 
   methods:{
     fn(){
+      //发送:内置封装好方法   emit发射   this.$emit("通道名称",要发送的数据,....)
+      //通道名称:自定义事件名称 应用@xxx
       this.$emit('ym',this.id);
     }
   }

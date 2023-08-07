@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>数量：{{num}}</h1>
+    <!-- <h1>数量：{{num}}</h1> -->
   </div>
 </template>
 

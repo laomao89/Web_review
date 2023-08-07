@@ -1,92 +1,122 @@
 <template>
-  <div class="box">
-    <!-- <h1>组件导入</h1> -->
-    <!-- 局部 -->
-    <!-- <cpt1></cpt1> -->
+  <section class="todoapp">
+    <!-- 头部：输入框 -->
+    <header class="header">
+      <h1>todos</h1>
+      <input class="new-todo" placeholder="输入新计划" autofocus @keydown.enter="add" v-model.trim="name" />
+    </header>
+
+    <!-- 列表： -->
+    <section class="main">
+      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="ck" />
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list">
+
+        <todo v-for="item in list" :key="item.id" :item="item" @aaa="del"></todo>
+      </ul>
+    </section>
+
+    <!-- 底部：状态栏 -->
+    <footer class="footer">
+      <span class="todo-count">剩余<strong>{{last}}</strong>未完成 </span>
+      <ul class="filters">
+        <li>
+          <a class="selected" href="#/">全部</a>
+        </li>
+        <li>
+          <a href="#/active">未完成</a>
+        </li>
+        <li>
+          <a href="#/completed">已完成</a>
+        </li>
+      </ul>
+      <button class="clear-completed" @click="clear">清除已完成</button>
+    </footer>
 
 
-    <!-- 所谓调用函数:传实参 (组件通信)-->
-    <!-- <cpt4 title="超级好吃的杨幂" price="89" num="8"></cpt4>
-    <cpt4 title="超级好吃的杨紫" price="89" num="8"></cpt4>
-    <cpt4 title="超级好吃的小孩" price="89" num="8"></cpt4>
-    <cpt4 :title="title" :price="price" :num="num"></cpt4> -->
 
-    <!-- 商品数据:后台给的list数组对象 -->
-    <p v-for="item in list" :key="item.title">{{item.title}} 库存：{{item.kc}} </p>
-    <hr>
-    <cpt4
-      v-for="item in list" 
-      :key="item.id" 
-      :title="item.title" 
-      :price="item.price" 
-      :num="item.num"
-      :kc="item.kc"
-      :id="item.id"
 
-      @ym="sbq"
-    ></cpt4>
-  </div>
-  
+
+  </section>
 </template>
 
+
 <script>
-import cpt1 from "./components/01-cpt.vue"
-import cpt4 from "./components/04-cpt.vue"
-import cpt5 from "./components/05-cpt.vue"
+import "./todos.css"; // 导入css模块！
+import todo from "./components/todo.vue";
 export default {
-  data(){
-    return{
-      title:"螺蛳粉",
-      price:15,
-      num:2,
-      list:[
-        {
-          id:1,
-          title:'第一道菜',
-          price:12,
-          num:8,
-          kc:132
-        },
-        {
-          id:2,
-          title:'第二道菜',
-          price:12,
-          num:8,
-          kc:142
-        },
-        {
-          id:3,
-          title:'第三道菜',
-          price:12,
-          num:8,
-          kc:152
-        },
-        {
-          id:4,
-          title:'第四道菜',
-          price:12,
-          num:8,
-          kc:162
-        },
-        {
-          id:5,
-          title:'第五道菜',
-          price:12,
-          num:8,
-          kc:172
-        },
-      ]
+  components: {
+    todo,
+  },
+  data() {
+    return {
+      // list: [
+      //   { id: 1, name: "吃饭", isDone: true },
+      //   { id: 2, name: "睡觉", isDone: false },
+      //   { id: 3, name: "打豆豆", isDone: true },
+      // ],
+      list:JSON.parse(localStorage.getItem("todos"))||[],
+      name:"" // 获取输入框的值
+    };
+  },
+  methods:{
+    // 收信号：id
+    del(id){
+      let i = this.list.findIndex(ele=>ele.id==id);
+      this.list.splice(i,1);
+    },
+    // 新增
+    add(){
+      if (this.name=="") {
+        return;
+      }
+
+      // 1.准备对象：id name isDone
+      let one = {
+        id:Math.random(),
+        name:this.name,
+        isDone:false,// 默认没有完整的计划
+      }
+
+      // 2、对象添加到数组
+      this.list.push(one);
+
+      // 3、输入框置空
+      this.name="";
+    },
+    
+    // 清空已完成
+    clear(){  
+      // 把没有完成的筛选，赋值给this.list;
+      this.list = this.list.filter(ele=>ele.isDone==false);
     }
   },
-  components:{cpt1,cpt4,cpt5},
-  methods:{
-      sbq(id){
-        
+  computed:{
+    last(){ // 剩余个数
+      // 筛选没有完成数组的长度
+      return this.list.filter(ele=>ele.isDone==false).length;
+    },
+    // 大小选
+    ck:{
+      get(){
+        return this.list.every(ele=>ele.isDone==true);
+      },
+      set(val){
+        this.list.forEach(ele=>ele.isDone=val);
       }
+    }
+  },
+  watch:{
+    list:{
+      deep:true, 
+      handler(){
+        localStorage.setItem("todos",JSON.stringify(this.list));
+      }
+    }
   }
-}
+};
 </script>
 
-<style lang="less">
- 
+
+<style scoped>
 </style>
