@@ -12,7 +12,7 @@
       <label for="toggle-all">Mark all as complete</label>
       <ul class="todo-list">
 
-        <todo v-for="item in list" :key="item.id" :item="item" @aaa="del"></todo>
+        <todo v-for="item in arr" :key="item.id" :item="item" @aaa="del"></todo>
       </ul>
     </section>
 
@@ -20,14 +20,15 @@
     <footer class="footer">
       <span class="todo-count">剩余<strong>{{last}}</strong>未完成 </span>
       <ul class="filters">
+        <!-- change后改变con的值,而且每个都不一样 -->
         <li>
-          <a href="#/" :class="{selected:con=='all'}">全部</a>
+          <a href="#/" :class="{selected:con=='all'}" @click="change(1)">全部</a>
         </li>
         <li>
-          <a href="#/active" :class="{selected:con=='und'}">未完成</a>
+          <a href="#/active" :class="{selected:con=='und'}" @click="change(2)">未完成</a>
         </li>
         <li>
-          <a href="#/completed" :class="{selected:con=='done'}">已完成</a>
+          <a href="#/completed" :class="{selected:con=='done'}" @click="change(3)">已完成</a>
         </li>
       </ul>
       <button class="clear-completed" @click="clear">清除已完成</button>
@@ -55,7 +56,9 @@ export default {
       //   { id: 2, name: "睡觉", isDone: false },
       //   { id: 3, name: "打豆豆", isDone: true },
       // ],
-      list:JSON.parse(localStorage.getItem("todos"))||[],
+      list:JSON.parse(localStorage.getItem("todos"))||[],   //真实数据
+      arr:JSON.parse(localStorage.getItem("todos"))||[],  //展示数据
+
       name:"", // 获取输入框的值
       con:'done',
     };
@@ -90,6 +93,27 @@ export default {
     clear(){  
       // 把没有完成的筛选，赋值给this.list;
       this.list = this.list.filter(ele=>ele.isDone==false);
+    },
+
+    // 切换
+    change(a){
+      // 记住:1、vue tab栏样式切换业务
+      //a：传进来点击每一个不一样
+      this.con = a;
+      
+      //记住:2、不同状态展示不同数据，背后list一定不能动！量不能变！重新开变量，用于展示数据！
+      //con为1的时候 全部
+      if(this.con == 1){
+        this.arr = this.list;
+      }
+      //con为2的时候 未完成
+      else if(this.con == 2){
+        this.arr = this.list.filter(ele => ele.isDone == false)
+      }
+      //con为3的时候 已完成
+      else if(this.con == 3){
+        this.arr = this.list.filter(ele => ele.isDone == true)
+      }
     }
   },
   computed:{
