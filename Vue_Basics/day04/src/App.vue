@@ -21,13 +21,13 @@
       <span class="todo-count">剩余<strong>{{last}}</strong>未完成 </span>
       <ul class="filters">
         <li>
-          <a class="selected" href="#/">全部</a>
+          <a href="#/" :class="{selected:con=='all'}">全部</a>
         </li>
         <li>
-          <a href="#/active">未完成</a>
+          <a href="#/active" :class="{selected:con=='und'}">未完成</a>
         </li>
         <li>
-          <a href="#/completed">已完成</a>
+          <a href="#/completed" :class="{selected:con=='done'}">已完成</a>
         </li>
       </ul>
       <button class="clear-completed" @click="clear">清除已完成</button>
@@ -56,7 +56,8 @@ export default {
       //   { id: 3, name: "打豆豆", isDone: true },
       // ],
       list:JSON.parse(localStorage.getItem("todos"))||[],
-      name:"" // 获取输入框的值
+      name:"", // 获取输入框的值
+      con:'done',
     };
   },
   methods:{
