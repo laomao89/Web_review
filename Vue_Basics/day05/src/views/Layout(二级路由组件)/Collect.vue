@@ -1,15 +1,9 @@
 <template>
-  <div>
-    <h1>我是Path</h1>
-  </div>
+  <div>Collect</div>
 </template>
 
 <script>
 export default {
-
+  name: 'CollectPage'
 }
 </script>
-
-<style>
-
-</style>
