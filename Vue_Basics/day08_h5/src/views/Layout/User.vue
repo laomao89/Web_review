@@ -1,8 +1,8 @@
 <template>
   <div class="user-page">
     <div class="user">
-      <img src="xxx" alt="" />
-      <h3>xxx</h3>
+      <img :src="avatar" alt="" />
+      <h3>{{ username }}</h3>
     </div>
     <van-grid clickable :column-num="3" :border="false">
       <van-grid-item icon="clock-o" text="历史记录" to="/" />
@@ -14,7 +14,7 @@
       <van-cell title="推荐分享" is-link />
       <van-cell title="意见反馈" is-link />
       <van-cell title="关于我们" is-link />
-      <van-cell title="退出登录" is-link />
+      <van-cell title="退出登录" is-link @click="out"/>
     </van-cell-group>
   </div>
 </template>
@@ -24,11 +24,21 @@ export default {
   name: 'user-page',
   data () {
     return {
+      username: '',
+      avatar: ''
     }
   },
-  created () {
+  async created () {
+    // 请求数据
+    const { data } = await this.$axios({ url: '/user/currentUser' })
+    this.username = data.username
+    this.avatar = data.avatar
   },
   methods: {
+    out () {
+      localStorage.removeItem('h5-token')
+      this.$router.push({ path: '/login' })
+    }
   }
 }
 </script>
